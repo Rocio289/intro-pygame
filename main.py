@@ -1,51 +1,56 @@
 import pygame as pg
+from figura_class import Figura
 
-
-#inicializar todos los modulos de pygame (pantallas, obejetos, eventos, etc)
+#inicializar todos los modulos de pygame, pantallas, objetos, eventos, sonidos, etc.
 pg.init()
+x_display=800
+y_display=600
 
+#crear pantalla o sourface
+pantalla = pg.display.set_mode( (x_display,y_display) )#definicion de tamaño de pantalla
+pg.display.set_caption( "Intro Pygame" )#agregar un titulo a mi ventana
 
-#crear pantalla o surface
-pantalla = pg.display.set_mode( (800,600) )#definicion de tamaño de pantalla
-pg.display.set_caption("Intro Pygame")#agregar un titulo a mi ventana
+game_over=True
 
-game_over = True
-x = 0
-vx = 1
-y = 0
-vy = 1
+rectangulo1 = Figura(0,300,(223, 40, 220))
+rectangulo2 = Figura(0,350,vx=2,vy=2)
+rectangulo3 = Figura(0,400,(52,185,36),vx=2,vy=2)
 
-x2 = 0
-vx2 = 1
-y2 = 500
-vy2 = 1
+circulo1 = Figura(0,300,radio=30)
+circulo2 = Figura(0,360, (223, 40, 84),radio=15,vx=2,vy=2 )
+circulo3 = Figura(0,400,(40, 223, 46),radio=20,vx=1,vy=2)
+
 while game_over:
     for eventos in pg.event.get():#capturar todos los eventos mientras se ejecuta el bucle
         print(eventos)
         if eventos.type == pg.QUIT:
             game_over = False
+
+
+    
     pantalla.fill( (50, 189, 172) )#asignar un color a la pantalla
-    #agregamor objeto a la pantalla
-    x += vx
-    y += vy
+    #agregamos objeto a la pantalla
 
-    x2 += vx2
-    y2 += vy2
+    circulo1.mover(x_display,y_display)
+    circulo1.dibujarCirculo(pantalla)
 
-    if x == 800 or x == 0:
-        vx = vx*-1
-    if y == 600 or y ==0:
-        vy = vy*-1
+    circulo2.mover(x_display,y_display)
+    circulo2.dibujarCirculo(pantalla)
 
-    if x2 == 800 or x2 == 0:
-        vx2 = vx2*-1
-    if y2 == 600 or y2 ==0:
-        vy2 = vy2*-1
+    circulo3.mover(x_display,y_display)
+    circulo3.dibujarCirculo(pantalla)
+    
 
-    #draw.rect(sourface, color en (rgb), posiciones(posicionX, posicionY, tamañoX, tamañoY))
-    pg.draw.rect(pantalla, (227, 58, 31), (x, y, 20, 20))
-    pg.draw.rect(pantalla, (227, 221, 8), (x2, y2, 20, 20))
-
+    rectangulo1.mover(x_display,y_display)
+    rectangulo2.mover(x_display,y_display)
+    rectangulo3.mover(x_display,y_display)
+    
+    #draw.rect(sourceface,color en (rgb),posiciones(posicionX,posicionY,tamañoX,tamañoY))
+    
+    rectangulo1.dibujarRectangulo(pantalla)
+    rectangulo2.dibujarRectangulo(pantalla)
+    rectangulo3.dibujarRectangulo(pantalla)
+    
     pg.display.flip()#funcion para cargar toda la configuracion que va dentro de la pantalla
-
+    print("prueba de modificacion")
 pg.quit()
