@@ -52,5 +52,5 @@ while game_over:
     rectangulo3.dibujarRectangulo(pantalla)
     
     pg.display.flip()#funcion para cargar toda la configuracion que va dentro de la pantalla
-    print("prueba de modificacion")
+    
 pg.quit()
